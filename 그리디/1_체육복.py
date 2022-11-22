@@ -24,3 +24,21 @@ def solution(n, lost, reserve):
     str_num = str_num.replace("02", "1")
     answer = n- str_num.count("0")
     return answer
+
+#답에 가까운 풀이
+#앞에 애가 빌려보고 없으면 뒤에 애한테 어차피 빌려야한다.
+def solution(n, lost, reserve):
+    arr = [1] * (n+1)
+    for s in lost:
+        arr[s] -= 1
+    for s in reserve:
+        arr[s] += 1
+    for i in range(n+1):
+        if(arr[i] == 0 and arr[i-1] == 2):
+            arr[i] = 1;
+            arr[i-1] = 1;
+        elif (i != n and arr[i] == 0 and arr[i+1] == 2):
+            arr[i] = 1
+            arr[i+1] = 1
+    answer = n - arr.count(0)
+    return answer
