@@ -27,7 +27,7 @@ def soultion (n, times):
         sum = 0
         for i in range(len(times)):
             sum += mid // times[i]
-        if sum > n:
+        if sum >= n:
             mx = mid - 1
         elif sum < n:
             lo = mid + 1
