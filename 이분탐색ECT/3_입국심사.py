@@ -18,19 +18,17 @@ answer//times[0] + answer//times[1] + .. = n
 from math import ceil
 
 
-def soultion (n, times):
+def solution (n, times):
     answer = 0
     lo = ceil(min(times) * n / len(times))
     mx = ceil(max(times) * n / len(times))
-    while lo < mx:
+    while lo <= mx:
         mid = (lo + mx)//2
         sum = 0
         for i in range(len(times)):
             sum += mid // times[i]
         if sum >= n:
             mx = mid - 1
-        elif sum < n:
-            lo = mid + 1
         else:
-            answer = mid
-    return answer
+            lo = mid + 1
+    return lo
