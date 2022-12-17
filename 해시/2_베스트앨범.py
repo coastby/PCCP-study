@@ -21,6 +21,7 @@ def solution(genres, plays):
             g_list[genres[i]] = []
         g_list[genres[i]].append((plays[i], i))
 
+
     g_play = [] #(총재생횟수, 장르)
     for g in g_list:
         g_num = 0
@@ -34,19 +35,11 @@ def solution(genres, plays):
     answer = []
 
     for i in range(len(g_play)):
-        g = g_list[g_play[i][1]]
-        g.sort(reverse = True)
-        a = g[0]
+        g = sorted(g_list[g_play[i][1]], key=lambda m: (-m[0], m[1]))
+        answer.append(g[0][1])
         try:
-            b = g[1]
-            if a[0] == b[0]:
-                answer.append(b[1])
-                answer.append(a[1])
-            else:
-                answer.append(a[1])
-                answer.append(b[1])
-
+            answer.append(g[1][1])
         except:
-            answer.append(a[1])
+            pass
 
     return answer
